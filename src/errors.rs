@@ -1,4 +1,5 @@
 pub enum ButylError {
-    InsufficientDataError
+    InsufficientDataError,
+    ExcessiveDataError
 } 
 
