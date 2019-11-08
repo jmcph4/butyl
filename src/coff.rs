@@ -300,3 +300,25 @@ impl CoffHeader {
     }
 }
 
+#[derive(Debug)]
+pub struct CoffFile<'a> {
+    header: CoffHeader,
+    data: &'a[u8]
+}
+
+impl<'a> CoffFile<'a> {
+    pub fn from_be_bytes(data: &[u8]) -> Result<CoffFile, ButylError> {
+        Ok(CoffFile {
+            header: CoffHeader::from_be_bytes(data)?,
+            data: data
+        })
+    }
+
+    pub fn from_le_bytes(data: &[u8]) -> Result<CoffFile, ButylError> {
+        Ok(CoffFile {
+            header: CoffHeader::from_le_bytes(data)?,
+            data: data
+        })
+    }
+}
+

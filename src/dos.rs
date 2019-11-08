@@ -276,3 +276,26 @@ impl DosHeader {
     }
 }
 
+#[derive(Debug)]
+pub struct DosFile<'a> {
+    header: DosHeader,
+    data: &'a[u8]
+}
+
+impl<'a> DosFile<'a> {
+    pub fn from_be_bytes(data: &[u8]) -> Result<DosFile, ButylError> {
+        Ok(DosFile {
+            header: DosHeader::from_be_bytes(data)?,
+            data: data
+        })
+    }
+
+    pub fn from_le_bytes(data: &[u8]) -> Result<DosFile, ButylError> {
+        Ok(DosFile {
+            header: DosHeader::from_le_bytes(data)?,
+            data: data
+        })
+    }
+}
+
+
