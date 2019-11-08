@@ -1,3 +1,6 @@
+use crate::dos;
+use crate::coff;
+
 pub enum Format {
     DOS,
     COFF,
@@ -14,5 +17,12 @@ impl Format {
             _ => Format::Unknown
         }
     }
+}
+
+#[derive(Debug)]
+pub enum File<'a> {
+    DOS(dos::DosFile<'a>),
+    COFF(coff::CoffFile<'a>),
+    Unknown(())
 }
 
